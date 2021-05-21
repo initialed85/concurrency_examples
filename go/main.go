@@ -20,6 +20,7 @@ func work(identifier int) {
 	if useLock {
 		lock.Lock()
 	}
+
 	fmt.Printf("%v: work %v...\n", identifier, counter)
 	for i := 0; i < 65536; i++ {
 		j := i * 65536
@@ -46,19 +47,14 @@ func startGoroutines() {
 
 func waitForCtrlC() {
 	sig := make(chan os.Signal, 2)
-
 	signal.Notify(sig, os.Interrupt, syscall.SIGTERM)
 
-	log.Printf("waiting for CTRL + C")
-
+	log.Printf("Press Ctrl + C to exit...")
 	<-sig
-
-	log.Printf("CTRL + C caught")
 }
 
 func main() {
 	log.Printf("%#+v", os.Args)
-
 	if len(os.Args) == 1 {
 		fmt.Printf("usage: %v [locked|unlocked]\n\nerror: first argument not given", os.Args[0])
 		os.Exit(1)
@@ -80,6 +76,5 @@ func main() {
 	go handler()
 
 	startGoroutines()
-
 	waitForCtrlC()
 }

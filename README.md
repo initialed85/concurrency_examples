@@ -18,6 +18,8 @@ venv/bin/python main.py [thread|process]
 gcc -o c main.c && ./c [thread|process]
 ```
 
+NOTE: Uncomment the use of the lock to simulate a Python GIL!
+
 ### Observations
 
 - thread = 1 process using all cores
@@ -33,3 +35,11 @@ go build -o main main.go && ./main [locked|unlocked]
 
 - locked = 1 process using approximately 1 core
 - unlocked = 1 process spread across all cores
+
+## Rust
+
+```
+cargo build && target/debug/rust
+```
+
+### Observations

@@ -6,16 +6,17 @@
 #include <stdlib.h>
 #include <signal.h>
 
-
 int counter = 0;
 pthread_mutex_t lock;
 bool stop = false;
+__unused int unused = 0;
 
 void work(int identifier) {
     // pthread_mutex_lock(&lock);
     printf("%d: work %i...\n", identifier, counter);
     for (int i = 0; i < 65536; i++) {
         int j = i * 65536;
+        unused = j;
     }
     counter++;
     // pthread_mutex_unlock(&lock);
