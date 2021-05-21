@@ -1,20 +1,20 @@
 from multiprocessing import Process
 from sys import argv
-from threading import Lock, Thread
+from threading import Thread
 from time import sleep
 
 counter = 0
-lock = Lock()
 stop = False
 
 
 def work(identifier):
-    global counter, lock, stop
+    global counter, stop
 
-    # with lock:
     print(f"{identifier}: work {counter}...")
     for i in range(0, 65536):
         j = i * 65536
+        _ = j
+
     counter += 1
 
 
@@ -55,6 +55,7 @@ def main():
     else:
         print(usage)
         print("error: first argument not one of [thread|process]")
+        exit(1)
 
     print("Press Ctrl + C to exit...")
     while not stop:
