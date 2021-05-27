@@ -35,11 +35,3 @@ go build -o main main.go && ./main [locked|unlocked]
 
 - locked = 1 process using approximately 1 core
 - unlocked = 1 process spread across all cores
-
-## Rust
-
-```
-cargo build && target/debug/rust
-```
-
-### Observations
